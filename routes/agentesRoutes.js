@@ -7,4 +7,6 @@ router.get('/agentes/:id', agentesController.getAgentesById);
 
 router.post('/agentes', agentesController.createAgente);
 
+router.put('/agentes/:id', agentesController.editarAgente);
+
 module.exports = router

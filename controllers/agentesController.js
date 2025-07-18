@@ -1,5 +1,5 @@
 const agentesRepository = require("../repositories/agentesRepository")
-const {v4: uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 function getAllAgentes(req, res) {
 
@@ -18,14 +18,35 @@ function getAgentesById(req, res) {
 }
 
 function createAgente(req, res) {
-    const novoAgente = req.body;
-    novoAgente.id = uuidv4();
+    const novoAgente = {
+        id: uuidv4(),
+        nome: req.body.nome,
+        dataDeIncorporacao: req.body.dataDeIncorporacao,
+        cargo: req.body.cargo
+    };
+
     agentesRepository.addAgente(novoAgente);
-    res.status(201).json(novoAgente);
+
+    res.status(201).json(novoAgente); 
+}
+
+function editarAgente(req, res) {
+    const dadosAtualizados = req.body;
+    const id = req.params.id;
+
+    const novoAgente = agentesRepository.editaAgente(id, dadosAtualizados);
+
+    if (novoAgente) {
+        res.status(200).json(novoAgente);
+    } else {
+        res.status(404).json({ mensagem: "Agente não encontrado para atualização." });
+    }
+
 }
 
 module.exports = {
     getAllAgentes,
     getAgentesById,
-    createAgente
+    createAgente,
+    editarAgente
 }

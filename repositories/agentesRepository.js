@@ -42,17 +42,30 @@ function findAll() {
     return agentes
 }
 
-function findAgentesById(id){
+function findAgentesById(id) {
     return agentes.find(agente => agente.id === id);
 }
 
-function addAgente(novoAgente){
+function addAgente(novoAgente) {
     agentes.push(novoAgente);
     return novoAgente;
+}
+
+function editaAgente(id, dadosAtualizados) {
+
+    const index = agentes.findIndex(agente => agente.id === id);
+
+    if (index !== -1) {
+        agentes[index] = { ...agentes[index], ...dadosAtualizados, id };
+        return agentes[index];
+    }
+
+    return null;
 }
 
 module.exports = {
     findAll,
     findAgentesById,
-    addAgente
+    addAgente,
+    editaAgente
 }
