@@ -75,10 +75,23 @@ function editaAgenteParcialmente(id, dadosAtualizados) {
     return null;
 }
 
+function removeAgente(id) {
+    const index = agentes.findIndex(agente => agente.id === id);
+
+    if (index !== -1) {
+        agentes.splice(index, 1);
+        return true;  
+    }
+
+    return false;  
+}
+
+
 module.exports = {
     findAll,
     findAgentesById,
     addAgente,
     editaAgente,
-    editaAgenteParcialmente
+    editaAgenteParcialmente,
+    removeAgente
 }

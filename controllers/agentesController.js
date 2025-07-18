@@ -27,7 +27,7 @@ function createAgente(req, res) {
 
     agentesRepository.addAgente(novoAgente);
 
-    res.status(201).json(novoAgente); 
+    res.status(201).json(novoAgente);
 }
 
 function editarAgente(req, res) {
@@ -55,6 +55,18 @@ function editarAgenteParcial(req, res) {
     } else {
         res.status(404).json({ mensagem: "Agente não encontrado para atualização." });
     }
+}
+
+function removerAgente(req, res) {
+    const id = req.params.id;
+
+    const agenteRemovido = agentesRepository.removeAgente(id);
+
+    if (agenteRemovido) {
+        res.status(200).json({ mensagem: "Agente removido com sucesso." });
+    } else {
+        res.status(404).json({ mensagem: "Agente não encontrado para remoção." });
+    }
 
 }
 
@@ -63,5 +75,6 @@ module.exports = {
     getAgentesById,
     createAgente,
     editarAgente,
-    editarAgenteParcial
+    editarAgenteParcial,
+    removerAgente
 }

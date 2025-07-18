@@ -11,4 +11,6 @@ router.put('/agentes/:id', agentesController.editarAgente);
 
 router.patch('/agentes/:id', agentesController.editarAgenteParcial);
 
+router.delete('/agentes/:id', agentesController.removerAgente);
+
 module.exports = router
