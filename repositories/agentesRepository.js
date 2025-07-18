@@ -63,9 +63,22 @@ function editaAgente(id, dadosAtualizados) {
     return null;
 }
 
+function editaAgenteParcialmente(id, dadosAtualizados) {
+
+    const index = agentes.findIndex(agente => agente.id === id);
+
+    if (index !== -1) {
+        agentes[index] = { ...agentes[index], ...dadosAtualizados, id };
+        return agentes[index];
+    }
+
+    return null;
+}
+
 module.exports = {
     findAll,
     findAgentesById,
     addAgente,
-    editaAgente
+    editaAgente,
+    editaAgenteParcialmente
 }

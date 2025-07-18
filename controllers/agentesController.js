@@ -44,9 +44,24 @@ function editarAgente(req, res) {
 
 }
 
+function editarAgenteParcial(req, res) {
+    const dadosAtualizados = req.body;
+    const id = req.params.id;
+
+    const agenteParcial = agentesRepository.editaAgenteParcialmente(id, dadosAtualizados);
+
+    if (agenteParcial) {
+        res.status(200).json(agenteParcial);
+    } else {
+        res.status(404).json({ mensagem: "Agente não encontrado para atualização." });
+    }
+
+}
+
 module.exports = {
     getAllAgentes,
     getAgentesById,
     createAgente,
-    editarAgente
+    editarAgente,
+    editarAgenteParcial
 }

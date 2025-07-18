@@ -9,4 +9,6 @@ router.post('/agentes', agentesController.createAgente);
 
 router.put('/agentes/:id', agentesController.editarAgente);
 
+router.patch('/agentes/:id', agentesController.editarAgenteParcial);
+
 module.exports = router
