@@ -42,6 +42,17 @@ function findAll() {
     return agentes
 }
 
+function findAgentesById(id){
+    return agentes.find(agente => agente.id === id);
+}
+
+function addAgente(novoAgente){
+    agentes.push(novoAgente);
+    return novoAgente;
+}
+
 module.exports = {
-    findAll
+    findAll,
+    findAgentesById,
+    addAgente
 }

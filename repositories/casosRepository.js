@@ -10,7 +10,7 @@ const casos = [
         id: "a3d45f21-7b9a-4f22-bc6e-2d73c9e5c4f7",
         titulo: "roubo",
         descricao: "Assalto a mão armada ocorreu às 19:10 do dia 22/03/2015 no centro da cidade. A vítima, uma mulher de 32 anos, teve seus pertences levados.",
-        status: "fechado",
+        status: "solucionado",
         agente_id: "b12dcf6e-5a1f-4a7e-9c82-dc2e5f7f6f11"
     },
     {
@@ -24,7 +24,7 @@ const casos = [
         id: "c2b87d9f-5e2a-4e8c-b9af-5f9e3d2a7e14",
         titulo: "vandalismo",
         descricao: "Pichação e danos ao patrimônio público foram reportados às 01:20 do dia 30/11/2018 em praça pública do bairro Jardim das Flores.",
-        status: "aberto",
+        status: "solucionado",
         agente_id: "b12dcf6e-5a1f-4a7e-9c82-dc2e5f7f6f11"
     }
 ]
@@ -34,6 +34,21 @@ function findAll() {
     return casos
 }
 
+function findById(id){
+    return casos.find(caso => caso.id === id);
+}
+
+function addCaso(novoCaso){
+    casos.push(novoCaso);
+    return novoCaso;
+}
+
+function atualizaCaso(caso){
+    
+}
+
 module.exports = {
-    findAll
+    findAll,
+    findById,
+    addCaso
 }
