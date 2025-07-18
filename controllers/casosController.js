@@ -46,9 +46,24 @@ function alteraCaso(req, res) {
 
 }
 
+function alteraCasoParcialmente(req, res) {
+        const dadosParciais = req.body;
+        const id = req.params.id;
+
+        const casoAtualizado = casosRepository.atualizaCasoParcialmente(id, dadosParciais);
+
+        if (casoAtualizado) {
+                res.status(200).json(casoAtualizado);
+        } else {
+                res.status(404).json({ mensagem: "Caso não encontrado para atualização." });
+        }
+
+}
+
 module.exports = {
         getAllCasos,
         getCasosById,
         createCaso,
-        alteraCaso
+        alteraCaso,
+        alteraCasoParcialmente
 }

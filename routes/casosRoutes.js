@@ -9,5 +9,8 @@ router.post('/casos', casosController.createCaso);
 
 router.put('/casos/:id', casosController.alteraCaso);
 
+router.patch('/casos/:id', casosController.alteraCasoParcialmente);
+
+
 module.exports = router
 

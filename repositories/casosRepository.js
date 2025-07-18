@@ -54,9 +54,21 @@ function atualizaCaso(id, dadosAtualizados) {
     return null;
 }
 
+function atualizaCasoParcialmente(id, dadosAtualizados) {
+    const index = casos.findIndex(caso => caso.id === id);
+
+    if (index !== -1) {
+        casos[index] = { ...casos[index], ...dadosAtualizados, id };
+        return casos[index];
+    }
+
+    return null;
+}
+
 module.exports = {
     findAll,
     findById,
     addCaso,
-    atualizaCaso
+    atualizaCaso,
+    atualizaCasoParcialmente
 }
