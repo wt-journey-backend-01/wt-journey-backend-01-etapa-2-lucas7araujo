@@ -7,5 +7,7 @@ router.get('/casos/:id', casosController.getCasosById);
 
 router.post('/casos', casosController.createCaso);
 
+router.put('/casos/:id', casosController.alteraCaso);
+
 module.exports = router
 

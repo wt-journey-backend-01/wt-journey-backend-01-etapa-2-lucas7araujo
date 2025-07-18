@@ -34,21 +34,29 @@ function findAll() {
     return casos
 }
 
-function findById(id){
+function findById(id) {
     return casos.find(caso => caso.id === id);
 }
 
-function addCaso(novoCaso){
+function addCaso(novoCaso) {
     casos.push(novoCaso);
     return novoCaso;
 }
 
-function atualizaCaso(caso){
-    
+function atualizaCaso(id, dadosAtualizados) {
+    const index = casos.findIndex(caso => caso.id === id);
+
+    if (index !== -1) {
+        casos[index] = { ...casos[index], ...dadosAtualizados, id };
+        return casos[index];
+    }
+
+    return null;
 }
 
 module.exports = {
     findAll,
     findById,
-    addCaso
+    addCaso,
+    atualizaCaso
 }

@@ -31,8 +31,24 @@ function createCaso(req, res) {
         });
 }
 
+function alteraCaso(req, res) {
+        const dadosAtualizado = req.body;
+        const id = req.params.id;
+
+        const casoAtualizado = casosRepository.atualizaCaso(id, dadosAtualizado);
+
+
+        if (casoAtualizado) {
+                res.status(200).json(casoAtualizado);
+        } else {
+                res.status(404).json({ mensagem: "Caso não encontrado para atualização." });
+        }
+
+}
+
 module.exports = {
         getAllCasos,
         getCasosById,
-        createCaso
+        createCaso,
+        alteraCaso
 }
