@@ -60,10 +60,22 @@ function alteraCasoParcialmente(req, res) {
 
 }
 
+function deletarCaso(req, res) {
+        const id = req.params.id;
+        const casoRemovido = casosRepository.removeCaso(id);
+
+        if (casoRemovido) {
+                res.status(200).json({ mensagem: "Caso removido com sucesso." });
+        } else {
+                res.status(404).json({ mensagem: "Caso não encontrado para remoção." });
+        }
+}
+
 module.exports = {
         getAllCasos,
         getCasosById,
         createCaso,
         alteraCaso,
-        alteraCasoParcialmente
+        alteraCasoParcialmente,
+        deletarCaso
 }

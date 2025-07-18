@@ -65,10 +65,23 @@ function atualizaCasoParcialmente(id, dadosAtualizados) {
     return null;
 }
 
+function removeCaso(id) {
+    const index = casos.findIndex(caso => caso.id === id);
+
+    if (index !== -1) {
+        casos.splice(index, 1);
+        return true;  
+    }
+
+    return false;  
+}
+
+
 module.exports = {
     findAll,
     findById,
     addCaso,
     atualizaCaso,
-    atualizaCasoParcialmente
+    atualizaCasoParcialmente,
+    removeCaso
 }

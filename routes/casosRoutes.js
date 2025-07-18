@@ -11,6 +11,8 @@ router.put('/casos/:id', casosController.alteraCaso);
 
 router.patch('/casos/:id', casosController.alteraCasoParcialmente);
 
+router.delete('/casos/:id', casosController.deletarCaso);
+
 
 module.exports = router
 
