@@ -59,6 +59,10 @@ function alteraCasoParcialmente(req, res) {
         const dadosParciais = req.body;
         const id = req.params.id;
 
+        if(dadosParciais.status !== 'aberto' && dadosParciais.status !== 'soluciobnando'){
+                return res.status(400).end();
+        }
+
         const casoAtualizado = casosRepository.atualizaCasoParcialmente(id, dadosParciais);
 
         if (casoAtualizado) {
