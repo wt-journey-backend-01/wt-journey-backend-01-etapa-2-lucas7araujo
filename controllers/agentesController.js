@@ -62,11 +62,8 @@ function removerAgente(req, res) {
 
     const agenteRemovido = agentesRepository.removeAgente(id);
 
-    if (agenteRemovido) {
-        res.status(200).json({ mensagem: "Agente removido com sucesso." });
-    } else {
-        res.status(404).json({ mensagem: "Agente não encontrado para remoção." });
-    }
+    if (agenteRemovido) res.status(204).end();
+    else res.status(404).end();
 
 }
 

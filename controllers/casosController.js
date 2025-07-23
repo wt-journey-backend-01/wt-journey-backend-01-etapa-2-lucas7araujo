@@ -19,9 +19,15 @@ function getCasosById(req, res) {
 
 function createCaso(req, res) {
         const novoCaso = req.body;
+
+        if (novoCaso.status !== 'aberto' && novoCaso.status !== 'solucionado') {
+                return res.status(400).end();
+        }
+
         novoCaso.id = uuidv4();
         novoCaso.agente_id = uuidv4();
         casosRepository.addCaso(novoCaso);
+
         res.status(201).json({
                 id: novoCaso.id,
                 titulo: novoCaso.titulo,
@@ -35,14 +41,17 @@ function alteraCaso(req, res) {
         const dadosAtualizado = req.body;
         const id = req.params.id;
 
+        if (dadosAtualizado.status !== 'aberto' && dadosAtualizado.status !== 'solucionado') {
+                return res.status(400).end();
+        }
+
         const casoAtualizado = casosRepository.atualizaCaso(id, dadosAtualizado);
 
-
-        if (casoAtualizado) {
-                res.status(200).json(casoAtualizado);
-        } else {
-                res.status(404).json({ mensagem: "Caso não encontrado para atualização." });
+        if (!casoAtualizado) {
+                return res.status(404).json({ mensagem: "Caso não encontrado." });
         }
+
+        res.status(200).json(casoAtualizado);
 
 }
 
@@ -64,11 +73,8 @@ function deletarCaso(req, res) {
         const id = req.params.id;
         const casoRemovido = casosRepository.removeCaso(id);
 
-        if (casoRemovido) {
-                res.status(200).json({ mensagem: "Caso removido com sucesso." });
-        } else {
-                res.status(404).json({ mensagem: "Caso não encontrado para remoção." });
-        }
+        if (casoRemovido) res.status(204).end();
+        else res.status(404).end();
 }
 
 module.exports = {
