@@ -11,12 +11,8 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/agentes",
-            "description": "Ambiente com dados dos agentes."
-        },
-        {
-            "url": "http://localhost:3000/casos",
-            "description": "Ambiente com dados dos casos."
+            "url": "http://localhost:3000",
+            "description": "Ambiente com dados da polícia"
         }
     ],
     "paths": {
@@ -41,6 +37,35 @@
                                             "descricao": "Disparos foram reportados às 22:33 do dia 10/07/2007 na região do bairro União, resultando na morte da vítima, um homem de 45 anos.",
                                             "status": "aberto",
                                             "agente_id": "401bccf5-cf9e-489d-8412-446cd169a0f1"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agentes": {
+            "get": {
+                "summary": "Retorna todos os agentes.",
+                "description": "Essa rota será reponsável por retornar todos os agentes listados no banco de dados da Polícia",
+                "tags": [
+                    "Agentes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna todos os agentes",
+                        "content": {
+                            "aplication/json": {
+                                "schemma": {
+                                    "type": "array",
+                                    "examples": [
+                                        {
+                                            "id": "401bccf5-fg5b-489d-8412-10baj3k9a0f1",
+                                            "nome": "Lucas Araújo",
+                                            "dataDeIncorporacao": "2022/08/08",
+                                            "cargo": "investigador"
                                         }
                                     ]
                                 }
