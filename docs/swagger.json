@@ -1,0 +1,54 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Departamento de Polícia",
+        "description": "Essa API Rest tem como objetivo servir às necessidades da polícia em gerenciar casos e funcionários.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Lucas Araújo",
+            "email": "lucasgabrielz2108@gmail.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/agentes",
+            "description": "Ambiente com dados dos agentes."
+        },
+        {
+            "url": "http://localhost:3000/casos",
+            "description": "Ambiente com dados dos casos."
+        }
+    ],
+    "paths": {
+        "/casos": {
+            "get": {
+                "summary": "Retorna todos os casos.",
+                "description": "Essa rota será reponsável por retornar todos os casos listados no banco de dados da Polícia",
+                "tags": [
+                    "Casos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna todos os casos",
+                        "content": {
+                            "aplication/json": {
+                                "schemma": {
+                                    "type": "array",
+                                    "examples": [
+                                        {
+                                            "id": "f5fb2ad5-22a8-4cb4-90f2-8733517a0d46",
+                                            "titulo": "homicidio",
+                                            "descricao": "Disparos foram reportados às 22:33 do dia 10/07/2007 na região do bairro União, resultando na morte da vítima, um homem de 45 anos.",
+                                            "status": "aberto",
+                                            "agente_id": "401bccf5-cf9e-489d-8412-446cd169a0f1"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
