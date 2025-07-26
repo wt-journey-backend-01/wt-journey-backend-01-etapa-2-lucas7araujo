@@ -21,7 +21,13 @@ function createCaso(req, res) {
         const novoCaso = req.body;
 
         if (novoCaso.status !== 'aberto' && novoCaso.status !== 'solucionado') {
-                return res.status(400).end();
+                return res.status(400).json({
+                        "status": 400,
+                        "message": "Parâmetros inválidos",
+                        "errors": {
+                                "status": "O campo 'status' pode ser somente 'aberto' ou 'solucionado'"
+                        }
+                });
         }
 
         novoCaso.id = uuidv4();
@@ -42,7 +48,13 @@ function alteraCaso(req, res) {
         const id = req.params.id;
 
         if (dadosAtualizado.status !== 'aberto' && dadosAtualizado.status !== 'solucionado') {
-                return res.status(400).end();
+                return res.status(400).json({
+                        "status": 400,
+                        "message": "Parâmetros inválidos",
+                        "errors": {
+                                "status": "O campo 'status' pode ser somente 'aberto' ou 'solucionado'"
+                        }
+                });
         }
 
         const casoAtualizado = casosRepository.atualizaCaso(id, dadosAtualizado);
@@ -59,8 +71,14 @@ function alteraCasoParcialmente(req, res) {
         const dadosParciais = req.body;
         const id = req.params.id;
 
-        if(dadosParciais.status !== 'aberto' && dadosParciais.status !== 'soluciobnando'){
-                return res.status(400).end();
+        if (dadosParciais.status !== 'aberto' && dadosParciais.status !== 'soluciobnando') {
+                return res.status(400).json({
+                        "status": 400,
+                        "message": "Parâmetros inválidos",
+                        "errors": {
+                                "status": "O campo 'status' pode ser somente 'aberto' ou 'solucionado'"
+                        }
+                });
         }
 
         const casoAtualizado = casosRepository.atualizaCasoParcialmente(id, dadosParciais);
