@@ -81,6 +81,7 @@
             }
         },
         "/casos/{id}": {
+            "patch": {},
             "delete": {
                 "summary": "Deleta um caso baseado no ID indicado",
                 "description": "Essa rota será reponsável por deletar um dos casos listados no banco de dados da Polícia com base no seu ID",
@@ -107,68 +108,104 @@
                         "description": "Caso com o ID informado não foi encontrado"
                     },
                     "400": {
-                        "description": "ID inválido ou malformado"
+                        "description": "ID inválido ou mal formatado"
                     },
                     "500": {
                         "description": "Erro interno ao tentar deletar o caso"
                     }
                 }
-            },
-            "/agentes": {
-                "get": {
-                    "summary": "Retorna todos os agentes.",
-                    "description": "Essa rota será reponsável por retornar todos os agentes listados no banco de dados da Polícia",
-                    "tags": [
-                        "Agentes"
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Retorna todos os agentes",
-                            "content": {
-                                "aplication/json": {
-                                    "schemma": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/components/schemas/Agente"
-                                        }
+            }
+        },
+        "/agentes": {
+            "get": {
+                "summary": "Retorna todos os agentes.",
+                "description": "Essa rota será reponsável por retornar todos os agentes listados no banco de dados da Polícia",
+                "tags": [
+                    "Agentes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna todos os agentes",
+                        "content": {
+                            "aplication/json": {
+                                "schemma": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Agente"
                                     }
                                 }
                             }
-                        },
-                        "404": {
-                            "description": "Nenhum agente foi encontrado."
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum agente foi encontrado."
+                    }
+                }
+            },
+            "post": {
+                "summary": "Adiciona um novo Agente.",
+                "description": "Essa rota será reponsável por adicionar um novo Agente no banco de dados da Polícia",
+                "tags": [
+                    "Agentes"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Agente"
+                            }
                         }
                     }
                 },
-                "post": {
-                    "summary": "Adiciona um novo Agente.",
-                    "description": "Essa rota será reponsável por adicionar um novo Agente no banco de dados da Polícia",
-                    "tags": [
-                        "Agentes"
-                    ],
-                    "requestBody": {
+                "responses": {
+                    "200": {
+                        "description": "Adiciona um novo agente",
                         "content": {
-                            "application/json": {
+                            "aplication/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Agente"
                                 }
                             }
                         }
                     },
-                    "responses": {
-                        "200": {
-                            "description": "Adiciona um novo agente",
-                            "content": {
-                                "aplication/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Agente"
-                                    }
-                                }
-                            }
-                        },
-                        "400": {
-                            "description": "Formato Inválido"
+                    "400": {
+                        "description": "Formato Inválido"
+                    }
+                }
+            }
+        },
+        "/agentes/{id}": {
+            "patch": {},
+            "delete": {
+                "summary": "Desliga um agente baseado no ID indicado",
+                "description": "Essa rota será reponsável por desligar um dos agentes listados no banco de dados da Polícia com base no seu ID",
+                "tags": [
+                    "Agentes"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do agente que será desligado.",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agente desligado com sucesso"
+                    },
+                    "404": {
+                        "description": "Agente com o ID informado não foi encontrado"
+                    },
+                    "400": {
+                        "description": "ID inválido ou mal formatado"
+                    },
+                    "500": {
+                        "description": "Erro interno ao tentar deletar o Agente"
                     }
                 }
             }
