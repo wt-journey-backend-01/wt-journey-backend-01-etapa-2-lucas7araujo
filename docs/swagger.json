@@ -81,7 +81,60 @@
             }
         },
         "/casos/{id}": {
-            "patch": {},
+            "patch": {
+                "summary": "Edita parcialmente os dados de algum caso.",
+                "description": "Essa rota será reponsável por editar parcialmente algum caso no banco de dados da Polícia",
+                "tags": [
+                    "Casos"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do caso que será parcialmente editado.",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditaCasoParcialmente"
+                            },
+                            "example": {
+                                "titulo": "Atualização no caso da praça",
+                                "status": "encerrado",
+                                "agente_id": "b3d8a4cb-9e77-4786-b5dc-911f1ac233e8"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Caso editado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Caso"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos ou malformados"
+                    },
+                    "404": {
+                        "description": "Caso com o ID informado não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno ao tentar editar o caso"
+                    }
+                }
+            },
             "delete": {
                 "summary": "Deleta um caso baseado no ID indicado",
                 "description": "Essa rota será reponsável por deletar um dos casos listados no banco de dados da Polícia com base no seu ID",
@@ -115,159 +168,193 @@
                     }
                 }
             }
-        },
-        "/agentes": {
-            "get": {
-                "summary": "Retorna todos os agentes.",
-                "description": "Essa rota será reponsável por retornar todos os agentes listados no banco de dados da Polícia",
-                "tags": [
-                    "Agentes"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Retorna todos os agentes",
-                        "content": {
-                            "aplication/json": {
-                                "schemma": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Agente"
-                                    }
+        }
+    },
+    "/agentes": {
+        "get": {
+            "summary": "Retorna todos os agentes.",
+            "description": "Essa rota será reponsável por retornar todos os agentes listados no banco de dados da Polícia",
+            "tags": [
+                "Agentes"
+            ],
+            "responses": {
+                "200": {
+                    "description": "Retorna todos os agentes",
+                    "content": {
+                        "aplication/json": {
+                            "schemma": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Agente"
                                 }
                             }
                         }
-                    },
-                    "404": {
-                        "description": "Nenhum agente foi encontrado."
+                    }
+                },
+                "404": {
+                    "description": "Nenhum agente foi encontrado."
+                }
+            }
+        },
+        "post": {
+            "summary": "Adiciona um novo Agente.",
+            "description": "Essa rota será reponsável por adicionar um novo Agente no banco de dados da Polícia",
+            "tags": [
+                "Agentes"
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Agente"
+                        }
                     }
                 }
             },
-            "post": {
-                "summary": "Adiciona um novo Agente.",
-                "description": "Essa rota será reponsável por adicionar um novo Agente no banco de dados da Polícia",
-                "tags": [
-                    "Agentes"
-                ],
-                "requestBody": {
+            "responses": {
+                "200": {
+                    "description": "Adiciona um novo agente",
                     "content": {
-                        "application/json": {
+                        "aplication/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Agente"
                             }
                         }
                     }
                 },
-                "responses": {
-                    "200": {
-                        "description": "Adiciona um novo agente",
-                        "content": {
-                            "aplication/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Agente"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Formato Inválido"
-                    }
+                "400": {
+                    "description": "Formato Inválido"
                 }
             }
-        },
-        "/agentes/{id}": {
-            "patch": {},
-            "delete": {
-                "summary": "Desliga um agente baseado no ID indicado",
-                "description": "Essa rota será reponsável por desligar um dos agentes listados no banco de dados da Polícia com base no seu ID",
-                "tags": [
-                    "Agentes"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID do agente que será desligado.",
-                        "schema": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Agente desligado com sucesso"
-                    },
-                    "404": {
-                        "description": "Agente com o ID informado não foi encontrado"
-                    },
-                    "400": {
-                        "description": "ID inválido ou mal formatado"
-                    },
-                    "500": {
-                        "description": "Erro interno ao tentar deletar o Agente"
+        }
+    },
+    "/agentes/{id}": {
+        "patch": {},
+        "delete": {
+            "summary": "Desliga um agente baseado no ID indicado",
+            "description": "Essa rota será reponsável por desligar um dos agentes listados no banco de dados da Polícia com base no seu ID",
+            "tags": [
+                "Agentes"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID do agente que será desligado.",
+                    "schema": {
+                        "type": "string",
+                        "format": "uuid"
                     }
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "Caso": {
-                    "type": "object",
-                    "required": [
-                        "id",
-                        "titulo",
-                        "descricao",
-                        "status",
-                        "agente_id"
-                    ],
-                    "properties": {
-                        "id": {
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "titulo": {
-                            "type": "string"
-                        },
-                        "descricao": {
-                            "type": "string"
-                        },
-                        "status": {
-                            "type": "string",
-                            "enum": [
-                                "aberto",
-                                "encerrado"
-                            ]
-                        },
-                        "agente_id": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
-                    }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Agente desligado com sucesso"
                 },
-                "Agente": {
-                    "type": "object",
-                    "required": [
-                        "id",
-                        "nome",
-                        "dataDeIncorporacao",
-                        "cargo"
-                    ],
-                    "properties": {
-                        "id": {
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "nome": {
-                            "type": "string"
-                        },
-                        "dataDeIncorporacao": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "cargo": {
-                            "type": "string"
-                        }
+                "404": {
+                    "description": "Agente com o ID informado não foi encontrado"
+                },
+                "400": {
+                    "description": "ID inválido ou mal formatado"
+                },
+                "500": {
+                    "description": "Erro interno ao tentar deletar o Agente"
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Caso": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "titulo",
+                    "descricao",
+                    "status",
+                    "agente_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "titulo": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "aberto",
+                            "encerrado"
+                        ]
+                    },
+                    "agente_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                }
+            },
+            "EditaCasoParcialmente": {
+                "type": "object",
+                "properties": {
+                    "titulo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "descricao": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "status": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "aberto",
+                            "encerrado"
+                        ]
+                    },
+                    "agente_id": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "uuid"
+                    }
+                }
+            },
+            "Agente": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "nome",
+                    "dataDeIncorporacao",
+                    "cargo"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "dataDeIncorporacao": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "cargo": {
+                        "type": "string"
                     }
                 }
             }
