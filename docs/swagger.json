@@ -425,6 +425,16 @@
             }
         }
     },
+    "tags": [
+        {
+            "name": "Casos",
+            "description": "Operações relacionadas ao gerenciamento de casos policiais"
+        },
+        {
+            "name": "Agentes",
+            "description": "Operações relacionadas ao gerenciamento dos agentes da polícia"
+        }
+    ],
     "components": {
         "schemas": {
             "Caso": {
