@@ -283,6 +283,60 @@
             }
         },
         "/agentes/{id}": {
+            "put": {
+                "summary": "Edita integralmente os dados de um Agente",
+                "description": "Essa rota será reponsável por editar integralmente algum Agente inscrito no banco de dados da Polícia",
+                "tags": [
+                    "Agentes"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do Agente que será integralmente editado.",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditaAgente"
+                            },
+                            "example": {
+                                "nome": "Lucas Gabriel",
+                                "dataDeIncorporacao": "2000/08/08",
+                                "cargo": "delegado"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Agente editado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Agente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos ou malformados"
+                    },
+                    "404": {
+                        "description": "Agente com o ID informado não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno ao tentar editar o Agente"
+                    }
+                }
+            },
             "patch": {
                 "summary": "Edita parcialmente os dados de algum Agente.",
                 "description": "Essa rota será reponsável por editar parcialmente algum Agente inscrito no banco de dados da Polícia",
@@ -366,60 +420,6 @@
                     },
                     "500": {
                         "description": "Erro interno ao tentar deletar o Agente"
-                    }
-                }
-            },
-            "put": {
-                "summary": "Edita integralmente os dados de um Agente",
-                "description": "Essa rota será reponsável por editar integralmente algum Agente inscrito no banco de dados da Polícia",
-                "tags": [
-                    "Agentes"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID do Agente que será integralmente editado.",
-                        "schema": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/EditaAgente"
-                            },
-                            "example": {
-                                "nome": "Lucas Gabriel",
-                                "dataDeIncorporacao": "2000/08/08",
-                                "cargo": "delegado"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Agente editado com sucesso",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Agente"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Dados inválidos ou malformados"
-                    },
-                    "404": {
-                        "description": "Agente com o ID informado não encontrado"
-                    },
-                    "500": {
-                        "description": "Erro interno ao tentar editar o Agente"
                     }
                 }
             }
