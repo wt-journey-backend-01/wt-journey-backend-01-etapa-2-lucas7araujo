@@ -357,6 +357,29 @@
                         "type": "string"
                     }
                 }
+            },
+            "EditaAgenteParcialmente": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "dataDeIncorporacao": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "cargo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
             }
         }
     }
