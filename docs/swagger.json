@@ -229,7 +229,60 @@
         }
     },
     "/agentes/{id}": {
-        "patch": {},
+        "patch": {
+            "summary": "Edita parcialmente os dados de algum Agente.",
+            "description": "Essa rota será reponsável por editar parcialmente algum Agente inscrito no banco de dados da Polícia",
+            "tags": [
+                "Agentes"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID do Agente que será parcialmente editado.",
+                    "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/EditaAgenteParcialmente"
+                        },
+                        "example": {
+                            "nome": "Lucas Gabriel",
+                            "dataDeIncorporacao": "2000/08/08",
+                            "cargo": "delegado"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Agente editado com sucesso",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Agente"
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Dados inválidos ou malformados"
+                },
+                "404": {
+                    "description": "Agente com o ID informado não encontrado"
+                },
+                "500": {
+                    "description": "Erro interno ao tentar editar o caso"
+                }
+            }
+        },
         "delete": {
             "summary": "Desliga um agente baseado no ID indicado",
             "description": "Essa rota será reponsável por desligar um dos agentes listados no banco de dados da Polícia com base no seu ID",
@@ -371,7 +424,8 @@
                         "type": [
                             "string",
                             "null"
-                        ]
+                        ],
+                        "format": "date"
                     },
                     "cargo": {
                         "type": [
