@@ -423,171 +423,171 @@
                     }
                 }
             }
-        },
-        "components": {
-            "schemas": {
-                "Caso": {
-                    "type": "object",
-                    "required": [
-                        "id",
-                        "titulo",
-                        "descricao",
-                        "status",
-                        "agente_id"
-                    ],
-                    "properties": {
-                        "id": {
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "titulo": {
-                            "type": "string"
-                        },
-                        "descricao": {
-                            "type": "string"
-                        },
-                        "status": {
-                            "type": "string",
-                            "enum": [
-                                "aberto",
-                                "encerrado"
-                            ]
-                        },
-                        "agente_id": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Caso": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "titulo",
+                    "descricao",
+                    "status",
+                    "agente_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "titulo": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "aberto",
+                            "encerrado"
+                        ]
+                    },
+                    "agente_id": {
+                        "type": "string",
+                        "format": "uuid"
                     }
-                },
-                "EditaCaso": {
-                    "type": "object",
-                    "required": [
-                        "titulo",
-                        "descricao",
-                        "status",
-                        "agente_id"
-                    ],
-                    "properties": {
-                        "titulo": {
-                            "type": "string"
-                        },
-                        "descricao": {
-                            "type": "string"
-                        },
-                        "status": {
-                            "type": "string",
-                            "enum": [
-                                "aberto",
-                                "encerrado"
-                            ]
-                        },
-                        "agente_id": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
+                }
+            },
+            "EditaCaso": {
+                "type": "object",
+                "required": [
+                    "titulo",
+                    "descricao",
+                    "status",
+                    "agente_id"
+                ],
+                "properties": {
+                    "titulo": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "aberto",
+                            "encerrado"
+                        ]
+                    },
+                    "agente_id": {
+                        "type": "string",
+                        "format": "uuid"
                     }
-                },
-                "EditaCasoParcialmente": {
-                    "type": "object",
-                    "properties": {
-                        "titulo": {
-                            "type": [
-                                "string",
-                                "null"
-                            ]
-                        },
-                        "descricao": {
-                            "type": [
-                                "string",
-                                "null"
-                            ]
-                        },
-                        "status": {
-                            "type": [
-                                "string",
-                                "null"
-                            ],
-                            "enum": [
-                                "aberto",
-                                "encerrado"
-                            ]
-                        },
-                        "agente_id": {
-                            "type": [
-                                "string",
-                                "null"
-                            ],
-                            "format": "uuid"
-                        }
+                }
+            },
+            "EditaCasoParcialmente": {
+                "type": "object",
+                "properties": {
+                    "titulo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "descricao": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "status": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "aberto",
+                            "encerrado"
+                        ]
+                    },
+                    "agente_id": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "uuid"
                     }
-                },
-                "Agente": {
-                    "type": "object",
-                    "required": [
-                        "id",
-                        "nome",
-                        "dataDeIncorporacao",
-                        "cargo"
-                    ],
-                    "properties": {
-                        "id": {
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "nome": {
-                            "type": "string"
-                        },
-                        "dataDeIncorporacao": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "cargo": {
-                            "type": "string"
-                        }
+                }
+            },
+            "Agente": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "nome",
+                    "dataDeIncorporacao",
+                    "cargo"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "dataDeIncorporacao": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "cargo": {
+                        "type": "string"
                     }
-                },
-                "EditaAgente": {
-                    "type": "object",
-                    "required": [
-                        "nome",
-                        "dataDeIncorporacao",
-                        "cargo"
-                    ],
-                    "properties": {
-                        "nome": {
-                            "type": "string"
-                        },
-                        "dataDeIncorporacao": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "cargo": {
-                            "type": "string"
-                        }
+                }
+            },
+            "EditaAgente": {
+                "type": "object",
+                "required": [
+                    "nome",
+                    "dataDeIncorporacao",
+                    "cargo"
+                ],
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "dataDeIncorporacao": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "cargo": {
+                        "type": "string"
                     }
-                },
-                "EditaAgenteParcialmente": {
-                    "type": "object",
-                    "properties": {
-                        "nome": {
-                            "type": [
-                                "string",
-                                "null"
-                            ]
-                        },
-                        "dataDeIncorporacao": {
-                            "type": [
-                                "string",
-                                "null"
-                            ],
-                            "format": "date"
-                        },
-                        "cargo": {
-                            "type": [
-                                "string",
-                                "null"
-                            ]
-                        }
+                }
+            },
+            "EditaAgenteParcialmente": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "dataDeIncorporacao": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date"
+                    },
+                    "cargo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             }
