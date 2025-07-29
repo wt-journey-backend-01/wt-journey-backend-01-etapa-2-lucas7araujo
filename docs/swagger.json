@@ -27,8 +27,8 @@
                     "200": {
                         "description": "Retorna todos os casos",
                         "content": {
-                            "aplication/json": {
-                                "schemma": {
+                            "application/json": {
+                                "schema": {
                                     "type": "array",
                                     "examples": [
                                         {
@@ -67,7 +67,7 @@
                     "200": {
                         "description": "Adiciona um novo caso",
                         "content": {
-                            "aplication/json": {
+                            "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Caso"
                                 }
@@ -235,8 +235,8 @@
                     "200": {
                         "description": "Retorna todos os agentes",
                         "content": {
-                            "aplication/json": {
-                                "schemma": {
+                            "application/json": {
+                                "schema": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/Agente"
@@ -269,7 +269,7 @@
                     "200": {
                         "description": "Adiciona um novo agente",
                         "content": {
-                            "aplication/json": {
+                            "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Agente"
                                 }
