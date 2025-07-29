@@ -108,7 +108,7 @@
                             "example": {
                                 "titulo": "Atualização no caso da praça",
                                 "descricao": "Disparos foram reportados às 22:33 do dia 10/07/2007 na região do bairro União, resultando na morte da vítima, um homem de 45 anos.",
-                                "status": "encerrado",
+                                "status": "aberto",
                                 "agente_id": "b3d8a4cb-9e77-4786-b5dc-911f1ac233e8"
                             }
                         }
@@ -162,7 +162,7 @@
                             },
                             "example": {
                                 "titulo": "Atualização no caso da praça",
-                                "status": "encerrado",
+                                "status": "aberto",
                                 "agente_id": "b3d8a4cb-9e77-4786-b5dc-911f1ac233e8"
                             }
                         }
@@ -309,7 +309,6 @@
                             },
                             "example": {
                                 "nome": "Lucas Gabriel",
-                                "dataDeIncorporacao": "2000/08/08",
                                 "cargo": "delegado"
                             }
                         }
@@ -367,6 +366,60 @@
                     },
                     "500": {
                         "description": "Erro interno ao tentar deletar o Agente"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Edita integralmente os dados de um Agente",
+                "description": "Essa rota será reponsável por editar integralmente algum Agente inscrito no banco de dados da Polícia",
+                "tags": [
+                    "Agentes"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do Agente que será integralmente editado.",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditaAgente"
+                            },
+                            "example": {
+                                "nome": "Lucas Gabriel",
+                                "dataDeIncorporacao": "2000/08/08",
+                                "cargo": "delegado"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Agente editado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Agente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos ou malformados"
+                    },
+                    "404": {
+                        "description": "Agente com o ID informado não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno ao tentar editar o Agente"
                     }
                 }
             }
@@ -481,6 +534,26 @@
                             "type": "string",
                             "format": "uuid"
                         },
+                        "nome": {
+                            "type": "string"
+                        },
+                        "dataDeIncorporacao": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "cargo": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "EditaAgente": {
+                    "type": "object",
+                    "required": [
+                        "nome",
+                        "dataDeIncorporacao",
+                        "cargo"
+                    ],
+                    "properties": {
                         "nome": {
                             "type": "string"
                         },
