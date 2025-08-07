@@ -18,17 +18,29 @@ function getAgentesById(req, res) {
 }
 
 function createAgente(req, res) {
-    const novoAgente = {
-        id: uuidv4(),
-        nome: req.body.nome,
-        dataDeIncorporacao: req.body.dataDeIncorporacao,
-        cargo: req.body.cargo
-    };
+    const { nome, dataDeIncorporacao, cargo } = req.body;
 
-    agentesRepository.addAgente(novoAgente);
+    if (
+        nome && nome.trim() !== "" &&
+        dataDeIncorporacao && !isNaN(Date.parse(dataDeIncorporacao)) &&
+        cargo && cargo.trim() !== ""
+    ) {
+        const novoAgente = {
+            id: uuidv4(),
+            nome,
+            dataDeIncorporacao,
+            cargo
+        };
 
-    res.status(201).json(novoAgente);
+        agentesRepository.addAgente(novoAgente);
+        res.status(201).json(novoAgente);
+    } else {
+        return res.status(400).json({
+            erro: "Campos inválidos. Preencha corretamente: nome, data de incorporação (YYYY-MM-DD) e cargo."
+        });
+    }
 }
+
 
 function editarAgente(req, res) {
     const dadosAtualizados = req.body;
