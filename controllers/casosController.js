@@ -31,7 +31,6 @@ function createCaso(req, res) {
         }
 
         novoCaso.id = uuidv4();
-        novoCaso.agente_id = uuidv4();
         casosRepository.addCaso(novoCaso);
 
         res.status(201).json({
@@ -71,7 +70,7 @@ function alteraCasoParcialmente(req, res) {
         const dadosParciais = req.body;
         const id = req.params.id;
 
-        if (dadosParciais.status !== 'aberto' && dadosParciais.status !== 'soluciobnando') {
+        if (dadosParciais.status !== 'aberto' && dadosParciais.status !== 'solucionado') {
                 return res.status(400).json({
                         "status": 400,
                         "message": "Parâmetros inválidos",
