@@ -47,18 +47,20 @@ function editarAgente(req, res) {
     const id = req.params.id;
 
     const novoAgente = agentesRepository.editaAgente(id, dadosAtualizados);
-
+    delete dadosAtualizados.id;
+    
     if (novoAgente) {
         res.status(200).json(novoAgente);
     } else {
         res.status(404).json({ mensagem: "Agente não encontrado para atualização." });
     }
-
+    
 }
 
 function editarAgenteParcial(req, res) {
     const dadosAtualizados = req.body;
     const id = req.params.id;
+    delete dadosAtualizados.id;
 
     const agenteParcial = agentesRepository.editaAgenteParcialmente(id, dadosAtualizados);
 
